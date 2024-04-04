@@ -157,7 +157,7 @@ function App() {
               </div>
               <div className="font-Poppins px-2 py-1 flex flex-col gap-2">
                 <h3 className="font-bold">
-                  {metaTags.title?.length > 30
+                  {metaTags.title?.length || 31 > 30
                     ? metaTags.title?.slice(0, 30) + "..."
                     : metaTags.title}
                 </h3>
