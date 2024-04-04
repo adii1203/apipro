@@ -1,7 +1,8 @@
 import { CornerDownLeft, Loader, Unlink2 } from "lucide-react";
 import "./App.css";
 import { Input } from "./components/ui/input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Skeleton } from "./components/ui/skeleton";
 
 type MetaTage = {
   title?: string;
@@ -12,7 +13,7 @@ type MetaTage = {
 };
 
 function App() {
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState("https://github.com");
   const [metaTags, setMetaTags] = useState<MetaTage>({});
   const [isLoading, setIsLoading] = useState(false);
 
@@ -48,6 +49,10 @@ function App() {
 
     return domain;
   };
+
+  useEffect(() => {
+    getMetaTags(url);
+  }, []);
 
   return (
     <>
@@ -153,27 +158,49 @@ function App() {
           <div>
             <div className="max-w-[28rem] mx-auto mt-6 bg-background rounded-md overflow-hidden">
               <div className="aspect-video">
-                <img className="w-full h-full" src={metaTags?.image} alt="" />
+                {isLoading ? (
+                  <Skeleton className="w-full h-full bg-foreground/20" />
+                ) : (
+                  <img className="w-full h-full" src={metaTags?.image} alt="" />
+                )}
               </div>
               <div className="font-Poppins px-2 py-1 flex flex-col gap-2">
-                <h3 className="font-bold">
-                  {metaTags.title?.length || 31 > 30
-                    ? metaTags.title?.slice(0, 30) + "..."
-                    : metaTags.title}
-                </h3>
-                <p className="text-foreground/50 leading-5 text-sm font-medium">
-                  {metaTags.description?.slice(0, 100) + "..."}
-                </p>
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full overflow-hidden object-cover">
-                    <img className="w-full h-full" src={metaTags.icon} alt="" />
+                {isLoading ? (
+                  <Skeleton className="h-4 w-[200px] bg-foreground/20" />
+                ) : (
+                  <h3 className="font-bold">
+                    {metaTags.title?.length || 31 > 30
+                      ? metaTags.title?.slice(0, 30) + "..."
+                      : metaTags.title || "No Title"}
+                  </h3>
+                )}
+                {isLoading ? (
+                  <Skeleton className="h-4 w-[200px] bg-foreground/20" />
+                ) : (
+                  <p className="text-sm text-foreground">
+                    {metaTags.description?.length || 101 > 100
+                      ? metaTags.description?.slice(0, 100) + "..."
+                      : metaTags.description || "No Description"}
+                  </p>
+                )}
+                {isLoading ? (
+                  <Skeleton className="h-6 w-6 rounded-full bg-foreground/20" />
+                ) : (
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-full overflow-hidden object-cover">
+                      <img
+                        className="w-full h-full"
+                        src={metaTags.icon}
+                        alt=""
+                      />
+                    </div>
+                    <a
+                      className="text-sm font-Poppins font-medium text-blue-700"
+                      href={metaTags.url}>
+                      {extractDomain(metaTags.url || "")}
+                    </a>
                   </div>
-                  <a
-                    className="text-sm font-Poppins font-medium text-blue-700"
-                    href={metaTags.url}>
-                    {extractDomain(metaTags.url || "")}
-                  </a>
-                </div>
+                )}
               </div>
             </div>
           </div>
