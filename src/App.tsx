@@ -1,20 +1,13 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import UrlInput from "./components/app/UrlInput";
 import { Preview } from "./components/app/Preview";
 import Loader from "./components/app/Loader";
-import { MetaTageTypes } from "./lib/tpyes";
+import { useMeta } from "./hooks/useMetaData";
 
 function App() {
-  const [url, setUrl] = useState("https://github.com");
-  const [metaTags, setMetaTags] = useState<MetaTageTypes>({
-    title: "",
-    description: "",
-    image: "",
-    url: "",
-    icon: "",
-  });
-  const [isLoading, setIsLoading] = useState(false);
+  const { url, isLoading, metaTags, setIsLoading, setMetaTags, setUrl } =
+    useMeta();
 
   const getMetaTags = async (url: string) => {
     try {
@@ -100,8 +93,7 @@ function App() {
         <div className="relative z-50">
           {/* 
           /// Header Section
-          */}
-
+        */}
           <div className="text-center pt-32">
             <h1 className="text-5xl font-bold font-Poppins text-foreground">
               Metatags{" "}
