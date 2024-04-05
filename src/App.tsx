@@ -1,26 +1,25 @@
-import { CornerDownLeft, Loader, Unlink2 } from "lucide-react";
 import "./App.css";
-import { Input } from "./components/ui/input";
 import { useEffect, useState } from "react";
-import { Skeleton } from "./components/ui/skeleton";
-
-type MetaTage = {
-  title?: string;
-  description?: string;
-  image?: string;
-  url?: string;
-  icon?: string;
-};
+import UrlInput from "./components/app/UrlInput";
+import { Preview } from "./components/app/Preview";
+import Loader from "./components/app/Loader";
+import { MetaTageTypes } from "./lib/tpyes";
 
 function App() {
   const [url, setUrl] = useState("https://github.com");
-  const [metaTags, setMetaTags] = useState<MetaTage>({});
+  const [metaTags, setMetaTags] = useState<MetaTageTypes>({
+    title: "",
+    description: "",
+    image: "",
+    url: "",
+    icon: "",
+  });
   const [isLoading, setIsLoading] = useState(false);
 
   const getMetaTags = async (url: string) => {
     try {
       setIsLoading(true);
-      const res = await fetch(`https://apipro.xyz/metadata?url=${url}`);
+      const res = await fetch(`https://api.apipro.xyz/metadata?url=${url}`);
       const data = await res.json();
       console.log(data);
       if (data.success === true) {
@@ -39,15 +38,6 @@ function App() {
       return;
     }
     getMetaTags(url);
-  };
-
-  const extractDomain = (url: string) => {
-    if (!url) return;
-    let domain = url.replace(/(^\w+:|^)\/\/(www\.)?/, "");
-
-    domain = domain.replace(/\/.*$/, "");
-
-    return domain;
   };
 
   useEffect(() => {
@@ -126,84 +116,14 @@ function App() {
             </h1>
           </div>
 
-          {/* 
-          /// Input Section
-          */}
+          <UrlInput
+            url={url}
+            setUrl={setUrl}
+            isLoading={isLoading}
+            handelClick={handelClick}
+          />
 
-          <div
-            className="flex items-center justify-between px-2
-          max-w-[30rem] mx-auto bg-background rounded-lg mt-4
-          ">
-            <Unlink2 size={18} className="text-accent-foreground" />
-            <Input
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              placeholder="https://example.com"
-              type="url"
-              className="max-w-[28rem] border-none font-Poppins text-foreground"
-            />
-            {isLoading ? (
-              <Loader className="animate-spin" />
-            ) : (
-              <button onClick={handelClick}>
-                <CornerDownLeft size={18} className="text-accent-foreground" />
-              </button>
-            )}
-          </div>
-
-          {/* 
-          /// Preview Section
-          */}
-
-          <div>
-            <div className="max-w-[28rem] mx-auto mt-6 bg-background rounded-md overflow-hidden">
-              <div className="aspect-video">
-                {isLoading ? (
-                  <Skeleton className="w-full h-full bg-foreground/20" />
-                ) : (
-                  <img className="w-full h-full" src={metaTags?.image} alt="" />
-                )}
-              </div>
-              <div className="font-Poppins px-2 py-1 flex flex-col gap-2">
-                {isLoading ? (
-                  <Skeleton className="h-4 w-[200px] bg-foreground/20" />
-                ) : (
-                  <h3 className="font-bold">
-                    {metaTags.title?.length || 31 > 30
-                      ? metaTags.title?.slice(0, 30) + "..."
-                      : metaTags.title || "No Title"}
-                  </h3>
-                )}
-                {isLoading ? (
-                  <Skeleton className="h-4 w-[200px] bg-foreground/20" />
-                ) : (
-                  <p className="text-sm text-foreground">
-                    {metaTags.description?.length || 101 > 100
-                      ? metaTags.description?.slice(0, 100) + "..."
-                      : metaTags.description || "No Description"}
-                  </p>
-                )}
-                {isLoading ? (
-                  <Skeleton className="h-6 w-6 rounded-full bg-foreground/20" />
-                ) : (
-                  <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 rounded-full overflow-hidden object-cover">
-                      <img
-                        className="w-full h-full"
-                        src={metaTags.icon}
-                        alt=""
-                      />
-                    </div>
-                    <a
-                      className="text-sm font-Poppins font-medium text-blue-700"
-                      href={metaTags.url}>
-                      {extractDomain(metaTags.url || "")}
-                    </a>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
+          {isLoading ? <Loader /> : <Preview metaTags={metaTags} />}
         </div>
       </div>
     </>
