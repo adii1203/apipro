@@ -19,7 +19,8 @@ export const MetadataContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [url, setUrl] = useState("https://github.com");
+  const [url, setUrl] = useState("https://github.com/adii1203");
+
   const [metaTags, setMetaTags] = useState<MetaTageTypes>({
     title: "",
     description: "",

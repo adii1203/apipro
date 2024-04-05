@@ -12,7 +12,7 @@ export const Preview = ({ metaTags }: { metaTags: MetaTageTypes }) => {
   return (
     <div>
       <div className="max-w-[28rem] mx-auto mt-6 bg-background rounded-md overflow-hidden">
-        <div className="w-full h-48">
+        <div className="aspect-video">
           <img className="w-full h-full" src={metaTags?.image} alt="" />
         </div>
         <div className="font-Poppins px-2 py-1 flex flex-col gap-2">
