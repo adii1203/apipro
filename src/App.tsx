@@ -1,13 +1,15 @@
 import "./App.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import UrlInput from "./components/app/UrlInput";
 import { Preview } from "./components/app/Preview";
 import Loader from "./components/app/Loader";
 import { useMeta } from "./hooks/useMetaData";
+import { Check, Copy } from "lucide-react";
 
 function App() {
   const { url, isLoading, metaTags, setIsLoading, setMetaTags, setUrl } =
     useMeta();
+  const [isCopied, setIsCopied] = useState(false);
 
   const getMetaTags = async (url: string) => {
     try {
@@ -31,6 +33,14 @@ function App() {
       return;
     }
     getMetaTags(url);
+  };
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(`https://api.apipro.xyz/metadata?url=${url}`);
+    setIsCopied(true);
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 3000);
   };
 
   useEffect(() => {
@@ -116,6 +126,20 @@ function App() {
           />
 
           {isLoading ? <Loader /> : <Preview metaTags={metaTags} />}
+
+          <div className="mt-2 text-center font-Poppins w-fit mx-auto bg-background/40 px-4 py-3 border-border border rounded-full flex items-center gap-3">
+            <p className="text-sm">
+              https://api.apipro.xyz/metadata?url=
+              <span className="text-green-600">{url}</span>
+            </p>
+            {isCopied ? (
+              <Check size={18} />
+            ) : (
+              <button onClick={copyToClipboard}>
+                <Copy size={18} />
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </>
