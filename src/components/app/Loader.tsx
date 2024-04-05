@@ -3,7 +3,7 @@ import { Skeleton } from "../ui/skeleton";
 const Loader = () => {
   return (
     <div className="max-w-[28rem] mx-auto mt-6 bg-background rounded-md overflow-hidden flex flex-col gap-2">
-      <Skeleton className="max-w-[28rem] h-48 bg-foreground/10 rounded-none" />
+      <Skeleton className="aspect-video bg-foreground/10 rounded-none" />
       <div className="flex flex-col px-2 gap-1 pb-1">
         <Skeleton className="h-4 w-[200px] bg-foreground/20" />
         <Skeleton className="h-4 w-[200px] bg-foreground/20" />
