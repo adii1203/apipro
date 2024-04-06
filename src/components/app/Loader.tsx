@@ -1,6 +1,6 @@
 import { Skeleton } from "../ui/skeleton";
 
-const Loader = () => {
+const PreviewLoader = () => {
   return (
     <div className="max-w-[28rem] mx-auto mt-6 bg-background rounded-md overflow-hidden flex flex-col gap-2">
       <Skeleton className="aspect-video bg-foreground/10 rounded-none" />
@@ -13,4 +13,4 @@ const Loader = () => {
   );
 };
 
-export default Loader;
+export default PreviewLoader;
