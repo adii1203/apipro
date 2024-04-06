@@ -1,54 +1,10 @@
 import "./App.css";
-import { useEffect, useState } from "react";
-import UrlInput from "./components/app/UrlInput";
-import { Preview } from "./components/app/Preview";
-import Loader from "./components/app/Loader";
-import { useMeta } from "./hooks/useMetaData";
-
-import { Check, Copy } from "lucide-react";
+import { Routes, Route } from "react-router-dom";
+import MetaTags from "./pages/Metatags";
+import Home from "./pages/Home";
+import Footer from "./components/app/Footer";
 
 function App() {
-  const { url, isLoading, metaTags, setIsLoading, setMetaTags, setUrl } =
-    useMeta();
-
-  const [isCopied, setIsCopied] = useState(false);
-
-  const getMetaTags = async (url: string) => {
-    try {
-      setIsLoading(true);
-      const res = await fetch(`https://api.apipro.xyz/metadata?url=${url}`);
-      const data = await res.json();
-      console.log(data);
-      if (data.success === true) {
-        setMetaTags(data.data);
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handelClick = () => {
-    if (!url) {
-      console.log("Please enter a valid url");
-      return;
-    }
-    getMetaTags(url);
-  };
-
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(`https://api.apipro.xyz/metadata?url=${url}`);
-    setIsCopied(true);
-    setTimeout(() => {
-      setIsCopied(false);
-    }, 3000);
-  };
-
-  useEffect(() => {
-    getMetaTags(url);
-  }, []);
-
   return (
     <>
       <svg
@@ -101,62 +57,11 @@ function App() {
           maxHeight: "500px",
           maxWidth: "500px",
         }}></div>
-      <div className="w-screen h-screen bg-background">
-        <div className="relative z-50">
-          {/* 
-          /// Header Section
-        */}
-          <div className="text-center pt-32">
-            <h1 className="text-5xl font-bold font-Poppins text-foreground">
-              Metatags{" "}
-              <span
-                style={{
-                  WebkitTextFillColor: "transparent",
-                  WebkitBackgroundClip: "text",
-                }}
-                className="bg-gradient-to-r from-[#FFBE0B] to-[#FF006E] italic">
-                Api.
-              </span>
-            </h1>
-          </div>
-
-          <UrlInput
-            url={url}
-            setUrl={setUrl}
-            isLoading={isLoading}
-            handelClick={handelClick}
-          />
-
-          {isLoading ? <Loader /> : <Preview metaTags={metaTags} />}
-
-          <div className="mt-2 text-center font-Poppins w-fit mx-auto bg-background/40 px-4 py-3 border-border border rounded-full flex items-center gap-3">
-            <p className="text-sm">
-              https://api.apipro.xyz/metadata?url=
-              <span className="text-green-600">{url}</span>
-            </p>
-            {isCopied ? (
-              <Check size={18} />
-            ) : (
-              <button onClick={copyToClipboard}>
-                <Copy size={18} />
-              </button>
-            )}
-          </div>
-
-          <div className="text-center mt-6">
-            <p className="text-xs font-Poppins text-foreground">
-              Made with ❤️ by{" "}
-              <a
-                target="_blank"
-                rel="noreferrer noopener"
-                href="https://twitter.com/adiidev12" // Add your github link here
-                className="text-blue-500 hover:underline">
-                @adiidev12
-              </a>
-            </p>
-          </div>
-        </div>
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="metatags" element={<MetaTags />} />
+      </Routes>
+      <Footer />
     </>
   );
 }
