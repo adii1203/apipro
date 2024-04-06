@@ -13,6 +13,10 @@ const UrlInput = ({
 
   handelClick: () => void;
 }) => {
+  const handelEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && url) handelClick();
+  };
+
   return (
     <div
       className="flex items-center justify-between px-2
@@ -20,6 +24,7 @@ max-w-[30rem] mx-auto bg-background rounded-lg mt-4
 ">
       <Unlink2 size={18} className="text-accent-foreground" />
       <Input
+        onKeyDown={handelEnter}
         value={url}
         onChange={(e) => setUrl(e.target.value)}
         placeholder="https://example.com"
