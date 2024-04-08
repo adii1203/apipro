@@ -22,21 +22,22 @@ const Home = () => {
           </Link>
         </div>
         <div>
-          <div className="w-[22rem] mx-auto relative h-[10rem] border border-indigo-500 font-Poppins rounded bg-accent/80 grid place-content-center">
-            <Svg />
-            <h1 className="text-2xl font-bold text-center">
-              Avatar{" "}
-              <span
-                style={{
-                  WebkitTextFillColor: "transparent",
-                  WebkitBackgroundClip: "text",
-                }}
-                className="bg-gradient-to-r from-purple-500 to-blue-600 italic">
-                Api.
-              </span>
-            </h1>
-            <p className="text-sm text-muted-foreground">coming soon.</p>
-          </div>
+          <Link to={"/avatar"}>
+            <div className="w-[22rem] mx-auto relative h-[10rem] border border-indigo-500 font-Poppins rounded bg-accent/80 grid place-content-center">
+              <Svg />
+              <h1 className="text-2xl font-bold text-center">
+                Avatar{" "}
+                <span
+                  style={{
+                    WebkitTextFillColor: "transparent",
+                    WebkitBackgroundClip: "text",
+                  }}
+                  className="bg-gradient-to-r from-purple-500 to-blue-600 italic">
+                  Api.
+                </span>
+              </h1>
+            </div>
+          </Link>
         </div>
       </div>
     </>
