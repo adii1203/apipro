@@ -39,7 +39,7 @@ const MetaTags = () => {
   }, []);
 
   return (
-    <div className="w-screen h-screen bg-background">
+    <div className="h-screen bg-background">
       <div className="relative z-50">
         <PageTitle title="Metatags" />
         <UrlInput
@@ -50,7 +50,7 @@ const MetaTags = () => {
         />
         {isLoading ? <PreviewLoader /> : <Preview metaTags={metaTags} />}
 
-        <Copyurl text={url} />
+        <Copyurl text={`/metadata?url=${url}`} />
       </div>
     </div>
   );

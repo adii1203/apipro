@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <div className="fixed bottom-8 z-50 w-screen text-center ">
+    <div className=" text-center pb-3 z-50 relative mt-2 ">
       <p className="text-xs font-Poppins text-foreground">
         Made with ❤️ by{" "}
         <a

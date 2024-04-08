@@ -3,47 +3,11 @@ import { Routes, Route } from "react-router-dom";
 import MetaTags from "./pages/Metatags";
 import Home from "./pages/Home";
 import Footer from "./components/app/Footer";
+import Avatar from "./pages/Avatar";
 
 function App() {
   return (
     <>
-      <svg
-        className="absolute inset-0 z-10"
-        width="100%"
-        height="100%"
-        xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern
-            id="smallGrid"
-            width="10"
-            height="10"
-            patternUnits="userSpaceOnUse">
-            <path
-              d="M 10 0 L 0 0 0 10"
-              fill="none"
-              stroke-width="1.6"
-              opacity={1}
-              className="stroke-border/20"
-            />
-          </pattern>
-          <pattern
-            id="grid"
-            width="100"
-            height="100"
-            patternUnits="userSpaceOnUse">
-            <rect width="100" height="100" fill="url(#smallGrid)" />
-            <path
-              d="M 100 0 L 0 0 0 100"
-              fill="none"
-              stroke-width="2.6"
-              opacity={1}
-              className="stroke-border/50"
-            />
-          </pattern>
-        </defs>
-
-        <rect width="100%" height="100%" fill="url(#grid)" />
-      </svg>
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
         style={{
@@ -60,6 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="metatags" element={<MetaTags />} />
+        <Route path="avatar" element={<Avatar />} />
       </Routes>
       <Footer />
     </>
