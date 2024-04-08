@@ -29,7 +29,7 @@ const Avatar = () => {
         <QueryInput
           isSelectable={false}
           value={searchParams.get("name") || ""}
-          onChange={(e) => {
+          onInputChange={(e) => {
             const t = e.target.value;
             if (t == "") {
               removeQuery("name");
@@ -54,7 +54,7 @@ const Avatar = () => {
         <QueryInput
           isSelectable={false}
           value={searchParams.get("size") || ""}
-          onChange={(e) => {
+          onInputChange={(e) => {
             const t = e.target.value;
             if (t == "") {
               removeQuery("size");
@@ -78,7 +78,7 @@ const Avatar = () => {
         <QueryInput
           isSelectable={false}
           value={searchParams.get("color") || ""}
-          onChange={(e) => {
+          onInputChange={(e) => {
             const t = e.target.value;
             if (t == "") {
               removeQuery("color");
@@ -103,7 +103,7 @@ const Avatar = () => {
         <QueryInput
           isSelectable={false}
           value={searchParams.get("text") || ""}
-          onChange={(e) => {
+          onInputChange={(e) => {
             const t = e.target.value;
             if (t == "") {
               removeQuery("text");
@@ -128,15 +128,13 @@ const Avatar = () => {
           values={["true", "false"]}
           isSelectable={true}
           value={searchParams.get("is_uppercase") || ""}
-          onChange={(e) => {
-            const t = e;
-
-            if (t == "") {
+          onValueChange={(value) => {
+            if (value == "") {
               removeQuery("is_uppercase");
             } else {
               setSearchParams(
                 (prev) => {
-                  prev.set("is_uppercase", t);
+                  prev.set("is_uppercase", value);
                   return prev;
                 },
                 {
@@ -154,14 +152,13 @@ const Avatar = () => {
           isSelectable={true}
           values={["true", "false"]}
           value={searchParams.get("is_bold") || ""}
-          onChange={(e) => {
-            const t = e;
-            if (t == "") {
+          onValueChange={(value) => {
+            if (value == "") {
               removeQuery("is_bold");
             } else {
               setSearchParams(
                 (prev) => {
-                  prev.set("is_bold", t);
+                  prev.set("is_bold", value);
                   return prev;
                 },
                 {
@@ -179,14 +176,13 @@ const Avatar = () => {
           isSelectable={true}
           values={["png", "jpeg"]}
           value={searchParams.get("format") || ""}
-          onChange={(e) => {
-            const t = e;
-            if (t == "") {
+          onValueChange={(value) => {
+            if (value == "") {
               removeQuery("format");
             } else {
               setSearchParams(
                 (prev) => {
-                  prev.set("format", t);
+                  prev.set("format", value);
                   return prev;
                 },
                 {
