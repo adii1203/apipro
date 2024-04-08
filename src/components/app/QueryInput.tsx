@@ -18,7 +18,8 @@ import {
 
 const QueryInput = ({
   value,
-  onChange,
+  onInputChange,
+  onValueChange,
   name,
   type,
   isRequired,
@@ -27,7 +28,8 @@ const QueryInput = ({
   values,
 }: {
   value: string | number;
-  onChange: (e) => void;
+  onInputChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onValueChange?: (value: string) => void;
   name: string;
   type: string;
   isRequired: boolean;
@@ -39,7 +41,8 @@ const QueryInput = ({
     <div className="px-3 py-2 font-Poppins flex items-center gap-1">
       {isSelectable === true ? (
         <>
-          <Select onValueChange={(value) => onChange(value)}>
+          <Select
+            onValueChange={(value) => onValueChange && onValueChange(value)}>
             <SelectTrigger className="w-full outline-none">
               <SelectValue placeholder={name} />
             </SelectTrigger>
@@ -67,7 +70,7 @@ const QueryInput = ({
         <>
           <Input
             value={value}
-            onChange={onChange}
+            onChange={onInputChange}
             className=""
             placeholder={name}
           />
