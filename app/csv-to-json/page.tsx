@@ -3,7 +3,22 @@ import PageHeader from "@/components/PageHeader";
 
 const Page = () => {
   return (
-    <main>
+    <main
+      className="
+        before:content-['']
+    before:absolute
+    before:w-full
+    before:h-full
+    before:top-0
+    before:z-[-1]
+    before:opacity-[0.2]
+    before:bg-[url('../public/grid.svg')]
+    
+    relative
+    z-[1]
+    w-full
+    h-screen
+    ">
       <section>
         <PageHeader
           title="CSV to JSON"
