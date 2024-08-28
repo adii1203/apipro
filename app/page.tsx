@@ -16,7 +16,7 @@ export default function Home() {
     
     relative
     z-[1]
-    flex min-h-screen flex-col items-center justify-between p-24 bg-background">
+    flex min-h-screen flex-col items-center justify-between py-24 bg-background">
       <div
         className="
       after:content-['']
