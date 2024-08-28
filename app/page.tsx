@@ -1,4 +1,5 @@
 import CMDK from "@/components/CMDK";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -14,6 +15,7 @@ export default function Home() {
     before:z-[-1]
     before:opacity-[0.2]
     before:bg-[url('../public/grid.svg')]
+    dark:before:bg-[url('../public/grid-dark.svg')]
     
     relative
     z-[1]
@@ -32,8 +34,9 @@ export default function Home() {
       after:saturate-50
       after:opacity-[0.2]
       container md:w-[80%] space-y-10">
-        <div className="flex justify-end">
+        <div className="flex justify-end gap-2">
           <CMDK />
+          <ThemeToggle />
         </div>
         <div className=" flex flex-wrap items-center gap-4 ">
           <div className="bg-card border-[.6px] border-border px-4 py-3 rounded space-y-4 md:w-96">

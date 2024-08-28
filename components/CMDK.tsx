@@ -34,7 +34,7 @@ const CMDK = () => {
     <>
       <div
         onClick={() => setOpen(true)}
-        className="cursor-pointer w-64 py-2 px-2 rounded-md bg-muted flex items-center justify-between">
+        className="cursor-pointer w-64 py-2 px-2 rounded-md bg-card flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Search size={16} />
           <p className="text-muted-foreground text-sm">Search for tools.</p>

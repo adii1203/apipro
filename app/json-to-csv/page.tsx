@@ -12,6 +12,7 @@ const Page = () => {
                 before:z-[-1]
                 before:opacity-[0.2]
                 before:bg-[url('../public/grid.svg')]
+                dark:before:bg-[url('../public/grid-dark.svg')]
                 
                 relative
                 z-[1]
