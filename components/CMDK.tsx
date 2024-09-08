@@ -59,6 +59,11 @@ const CMDK = () => {
               className="h-8 text-sm">
               <span>json to csv</span>
             </CommandItem>
+            <CommandItem
+              onSelect={() => router.push("/rgb-to-hex")}
+              className="h-8 text-sm">
+              <span>rgb to hex</span>
+            </CommandItem>
           </CommandGroup>
         </CommandList>
       </CommandDialog>
