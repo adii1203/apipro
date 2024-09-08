@@ -38,7 +38,7 @@ export default function Home() {
           <CMDK />
           <ThemeToggle />
         </div>
-        <div className=" flex flex-wrap items-center gap-4 ">
+        <div className=" flex flex-wrap items-center gap-4 justify-center">
           <div className="bg-card border-[.6px] border-border px-4 py-3 rounded space-y-4 md:w-96">
             <p className="text-lg font-semibold">CSV to JSON</p>
             <p className="text-sm font-normal text-muted-foreground">
@@ -67,6 +67,24 @@ export default function Home() {
             <div>
               <Link
                 href="/json-to-csv"
+                className={buttonVariants({
+                  variant: "default",
+                  size: "sm",
+                })}>
+                Try it
+              </Link>
+            </div>
+          </div>
+          <div className="bg-card border-[.6px] border-border px-4 py-3 rounded space-y-4 md:w-96">
+            <p className="text-lg font-semibold">RGB to HEX</p>
+            <p className="text-sm font-normal text-muted-foreground">
+              Effortlessly convert your JSON data to CSV format with our free
+              JSON to CSV Converter. Quickly transform structured JSON into
+              tabular CSV format.
+            </p>
+            <div>
+              <Link
+                href="/rgb-to-hex"
                 className={buttonVariants({
                   variant: "default",
                   size: "sm",
