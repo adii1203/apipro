@@ -78,9 +78,9 @@ export default function Home() {
           <div className="bg-card border-[.6px] border-border px-4 py-3 rounded space-y-4 md:w-96">
             <p className="text-lg font-semibold">RGB to HEX</p>
             <p className="text-sm font-normal text-muted-foreground">
-              Effortlessly convert your JSON data to CSV format with our free
-              JSON to CSV Converter. Quickly transform structured JSON into
-              tabular CSV format.
+              Convert RGB to HEX. This tool is a free online color converter
+              between two color formats RGB and HEX. The tool is fast and very
+              simple to use.
             </p>
             <div>
               <Link
